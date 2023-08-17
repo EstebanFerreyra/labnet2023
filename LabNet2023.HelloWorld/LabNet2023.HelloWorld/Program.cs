@@ -13,6 +13,7 @@ namespace LabNet2023.HelloWorld
         //    Console.WriteLine("Hello World");
         //}
 
+        // En este metodo esta el menu principal. Es el encargado de llamar a los demas metodos para que el programa funcione.
         static void Main(string[] args)
         {
             Console.WriteLine("SALUDO (i - ingles | e - español | 0 - salir)");
@@ -21,9 +22,7 @@ namespace LabNet2023.HelloWorld
             do
             {
                 letter = LetterValidation();
-
                 Console.WriteLine(Greeting(letter));
-
                 if (letter != "0")
                 {
                     Console.WriteLine("SALUDO (i - ingles | e - español | 0 - salir)");
@@ -32,6 +31,7 @@ namespace LabNet2023.HelloWorld
             Console.ReadKey();
         }
 
+        // Este motodo valida que el caracter ingresado sea valido para el programa (i, e o 0).
         static string LetterValidation()
         {
             string letter = Console.ReadLine();
@@ -44,6 +44,7 @@ namespace LabNet2023.HelloWorld
             return letter;
         }
 
+        // Este metodo devuelve un string de acuerdo al caracter que le pasamos por parametro.
         static string Greeting(string letter)
         {
             const string greetingInSpanish = "Hola mundo!";
