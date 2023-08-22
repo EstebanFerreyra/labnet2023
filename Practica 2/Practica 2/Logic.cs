@@ -17,6 +17,8 @@ namespace Practica_2
         public static void ThrowCustomException()
         {
             throw new CustomException();
+            // En la siguiente linea lanzamos una CustomException sobrecargando "Message".
+            // throw new CustomException("Sobrecargando el constructor de CustomException");
         }
     }
 }

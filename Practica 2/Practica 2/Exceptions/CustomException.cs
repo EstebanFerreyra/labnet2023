@@ -12,5 +12,10 @@ namespace Practica_2.Exceptions
         {
             
         }
+
+        public CustomException(string message) : base(message)
+        {
+
+        }
     }
 }
