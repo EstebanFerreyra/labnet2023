@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.EF.Logic", "Lab.EF.Logi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.EF.Entities", "Lab.EF.Entities\Lab.EF.Entities.csproj", "{48D5EB41-7122-45C7-AFE8-876DE41782E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.EF.UITests", "Lab.EF.UITests\Lab.EF.UITests.csproj", "{1093E2FA-80FC-4909-B17E-2B1342486563}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.EF.LogicTests1", "Lab.EF.LogicTests1\Lab.EF.LogicTests1.csproj", "{7F087D76-599A-4A5E-8A48-633668860797}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{48D5EB41-7122-45C7-AFE8-876DE41782E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48D5EB41-7122-45C7-AFE8-876DE41782E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48D5EB41-7122-45C7-AFE8-876DE41782E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1093E2FA-80FC-4909-B17E-2B1342486563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1093E2FA-80FC-4909-B17E-2B1342486563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1093E2FA-80FC-4909-B17E-2B1342486563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1093E2FA-80FC-4909-B17E-2B1342486563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F087D76-599A-4A5E-8A48-633668860797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F087D76-599A-4A5E-8A48-633668860797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F087D76-599A-4A5E-8A48-633668860797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F087D76-599A-4A5E-8A48-633668860797}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

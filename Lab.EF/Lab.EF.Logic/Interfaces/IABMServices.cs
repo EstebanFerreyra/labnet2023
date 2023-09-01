@@ -9,8 +9,9 @@ namespace Lab.EF.Logic.Interfaces
     public interface IABMServices<T>
     {
         List<T> GetAll();
+        T GetById(string id);
         void Add(T entity);
-        void Delete(T entity);
-        void Update(T entity);
+        bool Delete(string id);
+        bool Update(string id, string phone);
     }
 }

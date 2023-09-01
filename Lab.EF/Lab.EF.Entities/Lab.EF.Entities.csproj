@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\CategoriesDTO.cs" />
+    <Compile Include="DTO\CustomersDTO.cs" />
+    <Compile Include="DTO\EmployeesDTO.cs" />
     <Compile Include="Entities\Categories.cs" />
     <Compile Include="Entities\CustomerDemographics.cs" />
     <Compile Include="Entities\Customers.cs" />
@@ -61,9 +64,7 @@
     <Compile Include="Entities\Territories.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

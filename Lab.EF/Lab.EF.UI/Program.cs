@@ -1,4 +1,5 @@
 ﻿using Lab.EF.Entities.Entities;
+using Lab.EF.Logic.Interfaces;
 using Lab.EF.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Lab.EF.UI
     {
         static void Main(string[] args)
         {
-            ProgramMenu programMenu = new ProgramMenu();
+            ProgramMenu programMenu = new ProgramMenu(new EmployeesService(), new CustomersService(), new CategoriesService());
             programMenu.Menu();
         }
     }
