@@ -1,0 +1,18 @@
+﻿using Lab.LINQ_Data.Context;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab.LINQ_Logic
+{
+    public abstract class BaseService
+    {
+        protected readonly NorthwindContext _context;
+        public BaseService()
+        {
+            _context = new NorthwindContext();
+        }
+    }
+}
