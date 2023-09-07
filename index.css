@@ -1,0 +1,25 @@
+
+body {
+  background-image: url("https://i.pinimg.com/736x/39/54/7b/39547b886e2c518abe91199ce75d1bd7.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  font-family: Arial, sans-serif;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#card {
+    background-color: rgb(227, 236, 245);
+}
+
+#score {
+  font-size: 24px;
+  margin-top: 20px;
+}
