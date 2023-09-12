@@ -1,0 +1,52 @@
+﻿@model Lab.MVC.Models.UpdatePhoneView
+
+@{
+    ViewBag.Title = "Customers Page";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <br />
+        <h2 class="text-center">Actualizar telefono</h2>
+        <br />
+        @using (Html.BeginForm("Update", "Customers", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="ContactName">Id:</label>
+                @Html.TextBoxFor(r => r.CustomerID, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="ContactName">Telefono:</label>
+                @Html.TextBoxFor(r => r.Phone, new { @class = "form-control" })
+            </div>
+
+            <button type="submit" class="btn btn-success">Actualiazar</button>
+        }
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,74 @@
+﻿@model List<Lab.MVC.Models.CustomersView>
+
+@{
+    ViewBag.Title = "Customers Page";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <button class="btn btn-dark">
+                @Html.ActionLink("AGREGAR CLIENTE", "Insert", "Customers")
+            </button>
+            <button class="btn btn-dark">
+                @Html.ActionLink("MODIFICAR CLIENTE", "Update", "Customers")
+            </button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Listado de clientes</h1>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Nombre Compañía</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var customer in Model)
+                    {
+                        <tr>
+                            <td>@customer.ContactName</td>
+                            <td>@customer.CompanyName</td>
+                            <td>@customer.Address</td>
+                            <td>@customer.Phone</td>
+                            <td>
+                                @*<button class="btn btn-info" onclick="updatePhone('@customer.CustomerID')">
+                                    @Html.ActionLink("MODIFICAR", "Update", new { id = customer.customerid })
+                                    MODIFICAR
+                                </button>*@
+                                <button class="btn btn-danger">
+                                    @Html.ActionLink("ELIMINAR", "Delete", "Customers", new { id = customer.CustomerID }, new { onclick = "return confirm('¿Está seguro que desea borrar?')" })
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@*@section scripts {
+    <script>
+        // Función que se ejecutará cuando se haga clic en el botón "MODIFICAR"
+        function updatePhone(customerID) {
+            // Solicitar al usuario que ingrese un nuevo número de teléfono
+            var newPhone = prompt("Ingrese el nuevo número de teléfono:");
+            return { customerID, ne };
+        }
+    </script>*@
+}
+
+
