@@ -1,0 +1,20 @@
+﻿@model Lab.MVC.Models.Joke
+
+@{
+    ViewBag.Title = "Chiste";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Chiste del día</h5>
+                    <p class="card-text">@Model.setup</p>
+                    <p class="card-text">@Model.delivery</p>
+                    <button class="btn btn-primary" onclick="location.reload();">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
