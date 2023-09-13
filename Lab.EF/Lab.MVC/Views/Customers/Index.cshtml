@@ -4,6 +4,7 @@
     ViewBag.Title = "Customers Page";
 }
 <div class="container">
+
     <div class="row">
         <div class="col-md-12">
             <br />
@@ -16,6 +17,14 @@
         </div>
     </div>
     <br />
+
+    <div id="deleteSuccessAlert" class="alert alert-success" style="display: none;">
+        Cliente eliminado con éxito.
+    </div>
+    <div id="deleteErrorAlert" class="alert alert-danger" style="display: none;">
+        Error al eliminar el cliente.
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <h1>Listado de clientes</h1>
@@ -43,13 +52,10 @@
                             <td>@customer.Address</td>
                             <td>@customer.Phone</td>
                             <td>
-                                @*<button class="btn btn-info" onclick="updatePhone('@customer.CustomerID')">
-                                    @Html.ActionLink("MODIFICAR", "Update", new { id = customer.customerid })
-                                    MODIFICAR
-                                </button>*@
-                                <button class="btn btn-danger">
-                                    @Html.ActionLink("ELIMINAR", "Delete", "Customers", new { id = customer.CustomerID }, new { onclick = "return confirm('¿Está seguro que desea borrar?')" })
+                                <button class="btn btn-danger delete-customer" data-customerid="@customer.CustomerID">
+                                    ELIMINAR
                                 </button>
+
                             </td>
                         </tr>
                     }
@@ -57,18 +63,35 @@
             </table>
         </div>
     </div>
+    @section Scripts {
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $(".delete-customer").click(function () {
+                var id = $(this).data("customerid");
+                if (confirm('¿Está seguro que desea borrar?')) {
+                    $.ajax({
+                        url: '@Url.Action("Delete", "Customers")',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (result) {
+                            if (result.success) {
+                                $("#deleteSuccessAlert").show();
+                                setTimeout(function () {
+                                    $("#deleteErrorAlert").show();
+                                    location.reload();
+                                }, 1500);
+                            } else {
+                                $("#deleteErrorAlert").show();
+                            }
+                        },
+                        error: function () {
+                            $("#deleteErrorAlert").show();
+                        }
+                    });
+                }
+            });
+        });
+        </script>
+    }
 </div>
-
-
-@*@section scripts {
-    <script>
-        // Función que se ejecutará cuando se haga clic en el botón "MODIFICAR"
-        function updatePhone(customerID) {
-            // Solicitar al usuario que ingrese un nuevo número de teléfono
-            var newPhone = prompt("Ingrese el nuevo número de teléfono:");
-            return { customerID, ne };
-        }
-    </script>*@
-}
-
 

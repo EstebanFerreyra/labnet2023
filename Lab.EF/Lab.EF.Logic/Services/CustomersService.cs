@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab.EF.Logic.Services
 {
-    public class CustomersService : BaseService, IABMServices<Customers>
+    public class CustomersService : BaseService, IABMCustomers<Customers>
     {
         public List<Customers> GetAll()
         {
@@ -36,17 +36,18 @@ namespace Lab.EF.Logic.Services
             }
         }
 
-        public void Add(Customers entity)
+        public bool Add(Customers entity)
         {
             try
             {
                 _context.Customers.Add(entity);
                 _context.SaveChanges();
-                Console.WriteLine("Cliente agregado con exito");
+                return true;
             }
             catch (Exception exe)
             {
                 Console.WriteLine($"Ocurrio un error al intentar agregar un cliete: {exe.Message}");
+                return false;
             }
         }
        

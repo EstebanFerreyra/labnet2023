@@ -1,12 +1,9 @@
-﻿using Lab.EF.Entities.DTO;
-using Lab.EF.Entities.Entities;
+﻿using Lab.EF.Entities.Entities;
 using Lab.EF.Logic.Services;
 using Lab.MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Lab.MVC.Controllers
@@ -42,6 +39,7 @@ namespace Lab.MVC.Controllers
         {
             try
             {
+                bool success = true;
                 string id = customersView.CompanyName.Substring(0, 5).ToUpper();
                 var customersEntity = new Customers
                 {
@@ -52,9 +50,18 @@ namespace Lab.MVC.Controllers
                     Phone = customersView.Phone,
                 };
 
-                customersService.Add(customersEntity);
+                var result =  customersService.Add(customersEntity);
+                if (!result)
+                {
+                    success = false;
+                    return Json(new { success = false, errorMessage = "Error al insertar el cliente." });
+                }
 
-                return RedirectToAction("Index");
+                return Json(new { success = true });
+            }
+            catch (System.NullReferenceException)
+            {
+                return RedirectToAction("Index", "Error");
             }
             catch (Exception)
             {
@@ -66,8 +73,13 @@ namespace Lab.MVC.Controllers
         {
             try
             {
-                customersService.Delete(id);
-                return RedirectToAction("Index");
+                bool success = true;
+                var result = customersService.Delete(id);
+                if (!result)
+                {
+                    success = false;    
+                }
+                return Json(new { success = success });
             }
             catch (Exception)
             {
@@ -85,14 +97,18 @@ namespace Lab.MVC.Controllers
         {
             try
             {
-                customersService.Update(updatePhoneView.CustomerID, updatePhoneView.Phone);
-                return RedirectToAction("Index");
+                bool success = true;
+                var result = customersService.Update(updatePhoneView.CustomerID, updatePhoneView.Phone);
+                if (!result)
+                {
+                    return Json(new { success = false, errorMessage = "Error al actualizar el teléfono." });
+                }
+                return Json(new { success = true });
             }
             catch (Exception)
             {
                 return RedirectToAction("Index", "Error");
             }
         }
-
     }
 }

@@ -4,7 +4,6 @@
     ViewBag.Title = "Customers Page";
 }
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,23 +29,79 @@
 
     <div class="container">
         <br />
-        <h2 class="text-center">Actualizar telefono</h2>
+        <h2 class="text-center">Actualizar teléfono</h2>
         <br />
-        @using (Html.BeginForm("Update", "Customers", FormMethod.Post))
+        <div id="customAlert" class="alert alert-danger" style="display: none;">
+            Por favor, complete todos los campos.
+        </div>
+        <div id="updateAlert" class="alert" style="display: none;"></div>
+
+        @using (Html.BeginForm("Update", "Customers", FormMethod.Post, new { id = "updatePhoneForm" }))
         {
             <div class="form-group">
-                <label for="ContactName">Id:</label>
+                <label for="CustomerID">Id:</label>
                 @Html.TextBoxFor(r => r.CustomerID, new { @class = "form-control" })
             </div>
 
             <div class="form-group">
-                <label for="ContactName">Telefono:</label>
+                <label for="Phone">Teléfono:</label>
                 @Html.TextBoxFor(r => r.Phone, new { @class = "form-control" })
             </div>
 
-            <button type="submit" class="btn btn-success">Actualiazar</button>
+            <button type="submit" class="btn btn-success">Actualizar</button>
         }
     </div>
+
+    @section Scripts {
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $("#updatePhoneForm").submit(function (event) {
+                var customerId = $("#CustomerID").val();
+                var phone = $("#Phone").val();
+
+                if (customerId === "" || phone === "") {
+                    $("#customAlert").show();
+                    event.preventDefault();
+                } else {
+                    $("#customAlert").hide();
+                }
+            });
+        });
+
+        $("#updatePhoneForm").on("submit", function (event) {
+            event.preventDefault();
+
+            $.ajax({
+                url: '@Url.Action("Update", "Customers")',
+                type: 'POST',
+                data: $("#updatePhoneForm").serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        $("#updateAlert").removeClass("alert-danger").addClass("alert-success");
+                        $("#updateAlert").text("Teléfono actualizado con éxito.").show();
+                    } else {
+                        $("#updateAlert").removeClass("alert-success").addClass("alert-danger");
+                        $("#updateAlert").text("Error al actualizar el teléfono.").show();
+                    }
+
+                    setTimeout(function () {
+                        $("#updateAlert").hide();
+                        window.location.href = '@Url.Action("Index", "Customers")';
+                    }, 3000);
+                },
+                error: function () {
+                    $("#updateAlert").removeClass("alert-success").addClass("alert-danger");
+                    $("#updateAlert").text("Error al actualizar el teléfono.").show();
+
+                    setTimeout(function () {
+                        $("#updateAlert").hide();
+                        window.location.href = '@Url.Action("Index", "Customers")';
+
+                    }, 3000);
+                }
+            });
+        });
+        </script>
+    }
 </body>
 </html>
-

@@ -31,7 +31,12 @@
         <br />
         <h2 class="text-center">Nuevo cliente</h2>
         <br />
-        @using (Html.BeginForm("Insert", "Customers", FormMethod.Post))
+        <div id="customAlert" class="alert alert-danger" style="display: none;">
+            Por favor, complete todos los campos.
+        </div>
+        <div id="insertAlert" class="alert" style="display: none;"></div>
+
+        @using (Html.BeginForm("Insert", "Customers", FormMethod.Post, new { id = "customerForm" }))
         {
             <div class="form-group">
                 <label for="ContactName">Nombre:</label>
@@ -56,5 +61,52 @@
             <button type="submit" class="btn btn-success">Guardar</button>
         }
     </div>
+    @section Scripts {
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $("#customerForm").submit(function (event) {
+                var contactName = $("#ContactName").val();
+                var companyName = $("#CompanyName").val();
+                var address = $("#Address").val();
+                var phone = $("#Phone").val();
+
+                if (contactName === "" || companyName === "" || address === "" || phone === "") {
+                    $("#customAlert").show();
+                    event.preventDefault();
+                } else {
+                    $("#customAlert").hide();
+                }
+            });
+
+            $("#customerForm").on("submit", function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: '@Url.Action("Insert", "Customers")',
+                    type: 'POST',
+                    data: $("#customerForm").serialize(),
+                    success: function (result) {
+                        if (result.success) {
+                            $("#insertAlert").removeClass("alert-danger").addClass("alert-success");
+                            $("#insertAlert").text("Cliente guardado con éxito.").show();
+
+                            setTimeout(function () {
+                                $("#insertAlert").hide();
+                                window.location.href = '@Url.Action("Index", "Customers")';
+                            }, 3000);
+                        } else {
+                            $("#insertAlert").removeClass("alert-success").addClass("alert-danger");
+                            $("#insertAlert").text("Error al insertar el cliente.").show();
+                        }
+                    },
+                    error: function () {
+                        $("#insertAlert").removeClass("alert-success").addClass("alert-danger");
+                        $("#insertAlert").text("Error al insertar el cliente.").show();
+                    }
+                });
+            });
+        });
+        </script>
+    }
 </body>
 </html>
