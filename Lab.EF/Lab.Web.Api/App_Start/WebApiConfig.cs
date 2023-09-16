@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Lab.Web.Api.Controllers;
 using System.Web.Http;
 
 namespace Lab.Web.Api
@@ -13,6 +11,8 @@ namespace Lab.Web.Api
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.MessageHandlers.Add(new TokenValidationHandler());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
