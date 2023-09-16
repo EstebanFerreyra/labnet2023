@@ -4,14 +4,9 @@ using Lab.Web.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Mvc;
-using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
-using HttpGetAttribute = System.Web.Mvc.HttpGetAttribute;
-using HttpPatchAttribute = System.Web.Mvc.HttpPatchAttribute;
-using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
-using RouteAttribute = System.Web.Http.RouteAttribute;
 
 namespace Lab.Web.Api.Controllers
 {
@@ -25,7 +20,7 @@ namespace Lab.Web.Api.Controllers
             try
             {
                 List<Customers> customers = customersService.GetAll();
-                
+
                 if (customers == null)
                 {
                     return BadRequest("Error al obtener la lista de clientes");
@@ -49,7 +44,6 @@ namespace Lab.Web.Api.Controllers
         }
 
         [HttpPost]
-        [Route("add")]
         public IHttpActionResult AddCustomer([FromBody] CustomersView customer)
         {
             try
@@ -101,7 +95,6 @@ namespace Lab.Web.Api.Controllers
         }
 
         [HttpPatch]
-        [Route("update")]
         public IHttpActionResult UpdatePhone([FromBody] UpdatePhoneView updatePhoneView)
         {
             try
