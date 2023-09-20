@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace Lab.Web.Api.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     public class CustomersController : ApiController
     {
         CustomersService customersService = new CustomersService();
