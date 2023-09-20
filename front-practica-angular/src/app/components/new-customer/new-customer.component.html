@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<button class="btn btn-info m-3" (click)="redirectToHome()">VOLVER</button>
+<div class="container h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">DATOS DEL NUEVO CLIENTE</h2>
+          <form
+            [formGroup]="newCustomer"
+            (ngSubmit)="onNewCustomer(newCustomer.value)"
+          >
+            <div class="form-group m-3">
+              <label for="CompanyName">CompanyName</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="CompanyName"
+                id="CompanyName"
+                aria-describedby="emailHelp"
+                placeholder="CompanyName"
+              />
+            </div>
+            <div class="form-group m-3">
+              <label for="ContactName">ContactName</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="ContactName"
+                id="ContactName"
+                aria-describedby="emailHelp"
+                placeholder="ContactName"
+              />
+            </div>
+            <div class="form-group m-3">
+              <label for="Address">Email address</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="Address"
+                id="Address"
+                aria-describedby="emailHelp"
+                placeholder="Address"
+              />
+            </div>
+            <div class="form-group m-3">
+              <label for="Phone">Email address</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="Phone"
+                id="Phone"
+                aria-describedby="emailHelp"
+                placeholder="Phone"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary m-2">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

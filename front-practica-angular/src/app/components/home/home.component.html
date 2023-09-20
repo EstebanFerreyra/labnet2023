@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<button class="btn btn-info m-3" (click)="redirectToAdd()">
+  Agregar cliente
+</button>
+<button class="btn btn-info m-3" (click)="redirectToModify()">
+  Modificar cliente
+</button>
+
+<mat-table [dataSource]="listCustomers" class="mat-elevation-z8">
+  <ng-container matColumnDef="ContactName">
+    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.ContactName }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="CompanyName">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.CompanyName }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Address">
+    <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.Address }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Phone">
+    <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.Phone }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Delete">
+    <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button class="btn btn-danger" (click)="delete(element.CustomerID)">
+        x
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  [pageSize]="5"
+  showFirstLastButtons
+></mat-paginator>
